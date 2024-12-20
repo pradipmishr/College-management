@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long aid;
+    private Long id;
     @Column(nullable = false)
     private String username;
     private String password;
