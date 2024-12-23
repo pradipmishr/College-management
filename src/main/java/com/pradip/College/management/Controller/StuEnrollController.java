@@ -5,10 +5,7 @@ import com.pradip.College.management.Service.StuEnrollService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/stuEnroll")
@@ -17,8 +14,8 @@ public class StuEnrollController {
     private StuEnrollService stuEnrollService;
 
 
-@PostMapping("/add")
-   public ResponseEntity<StudentEnrollment> addStudentEnrollment(@RequestBody StudentEnrollment studentEnrollment){
-       return new ResponseEntity<>(stuEnrollService.saveStudentEnrollment(studentEnrollment), HttpStatus.CREATED);
+@PostMapping("/add/{studentId},{courseId}")
+   public ResponseEntity<StudentEnrollment> addStudentEnrollment(@RequestParam Long studentId, @RequestParam Long courseId){
+       return new ResponseEntity<>(stuEnrollService.saveStudentEnrollment(studentId,courseId), HttpStatus.CREATED);
    }
 }

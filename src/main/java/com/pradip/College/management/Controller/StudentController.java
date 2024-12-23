@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
+
     private StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        super();
+        this.studentService = studentService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Student> addStudent(@RequestBody Student student) {
