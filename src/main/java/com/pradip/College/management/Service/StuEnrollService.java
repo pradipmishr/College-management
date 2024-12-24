@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class StuEnrollService {
 
+    private UsersRepo studentRepo;
+    private CourseRepo courseRepo;
+    private StudentEnrollmentRepo studentEnrollmentRepo;
+
     @Autowired
     public StuEnrollService(StudentEnrollmentRepo studentEnrollmentRepo, UsersRepo studentRepo, CourseRepo courseRepo) {
         this.studentEnrollmentRepo = studentEnrollmentRepo;
@@ -19,10 +23,7 @@ public class StuEnrollService {
         this.courseRepo = courseRepo;
 
     }
-    private UsersRepo studentRepo;
-    private CourseRepo courseRepo;
-    @Autowired
-   private StudentEnrollmentRepo studentEnrollmentRepo;
+
 
     public StudentEnrollment saveStudentEnrollment(Long studentId, Long courseId) {
         // Retrieve Student and Course from their respective repositories

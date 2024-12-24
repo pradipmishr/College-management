@@ -14,8 +14,8 @@ public class StuEnrollController {
     private StuEnrollService stuEnrollService;
 
 
-@PostMapping("/add/{studentId},{courseId}")
-   public ResponseEntity<StudentEnrollment> addStudentEnrollment(@RequestParam Long studentId, @RequestParam Long courseId){
+@PostMapping("/add/{studentId}/{courseId}")
+   public ResponseEntity<StudentEnrollment> addStudentEnrollment(@PathVariable Long studentId, @PathVariable Long courseId){
        return new ResponseEntity<>(stuEnrollService.saveStudentEnrollment(studentId,courseId), HttpStatus.CREATED);
    }
 }

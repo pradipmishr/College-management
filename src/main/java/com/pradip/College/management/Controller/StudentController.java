@@ -1,6 +1,7 @@
 package com.pradip.College.management.Controller;
 
 import com.pradip.College.management.Model.Users;
+import com.pradip.College.management.Service.AdminService;
 import com.pradip.College.management.Service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Users> addStudent(@RequestBody Users student) {
-        return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
-    }
+
 
 
 }

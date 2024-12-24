@@ -8,9 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentService
 {
-    @Autowired
-    UsersRepo studentRepo;
-    public Users saveStudent(Users student){
-        return studentRepo.save(student);
-    }
+
 }
