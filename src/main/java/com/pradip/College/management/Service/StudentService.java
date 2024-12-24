@@ -1,7 +1,7 @@
 package com.pradip.College.management.Service;
 
-import com.pradip.College.management.Model.Student;
-import com.pradip.College.management.Repository.StudentRepo;
+import com.pradip.College.management.Model.Users;
+import com.pradip.College.management.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class StudentService
 {
     @Autowired
-    StudentRepo studentRepo;
-    public Student saveStudent(Student student){
+    UsersRepo studentRepo;
+    public Users saveStudent(Users student){
         return studentRepo.save(student);
     }
 }

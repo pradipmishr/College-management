@@ -1,8 +1,7 @@
 package com.pradip.College.management.Controller;
 
-import com.pradip.College.management.Model.Student;
+import com.pradip.College.management.Model.Users;
 import com.pradip.College.management.Service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +22,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+    public ResponseEntity<Users> addStudent(@RequestBody Users student) {
         return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 

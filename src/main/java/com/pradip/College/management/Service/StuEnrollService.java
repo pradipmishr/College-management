@@ -1,12 +1,11 @@
 package com.pradip.College.management.Service;
 
 import com.pradip.College.management.Model.Course;
-import com.pradip.College.management.Model.Student;
 import com.pradip.College.management.Model.StudentEnrollment;
+import com.pradip.College.management.Model.Users;
 import com.pradip.College.management.Repository.CourseRepo;
 import com.pradip.College.management.Repository.StudentEnrollmentRepo;
-
-import com.pradip.College.management.Repository.StudentRepo;
+import com.pradip.College.management.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +13,20 @@ import org.springframework.stereotype.Service;
 public class StuEnrollService {
 
     @Autowired
-    public StuEnrollService(StudentEnrollmentRepo studentEnrollmentRepo, StudentRepo studentRepo, CourseRepo courseRepo) {
+    public StuEnrollService(StudentEnrollmentRepo studentEnrollmentRepo, UsersRepo studentRepo, CourseRepo courseRepo) {
         this.studentEnrollmentRepo = studentEnrollmentRepo;
         this.studentRepo = studentRepo;
         this.courseRepo = courseRepo;
 
     }
-    private StudentRepo studentRepo;
+    private UsersRepo studentRepo;
     private CourseRepo courseRepo;
     @Autowired
    private StudentEnrollmentRepo studentEnrollmentRepo;
-//    public StudentEnrollment saveStudentEnrollment(StudentEnrollment studentEnrollment){
-//
-//        return studentEnrollmentRepo.save(studentEnrollment);
-//    }
 
     public StudentEnrollment saveStudentEnrollment(Long studentId, Long courseId) {
         // Retrieve Student and Course from their respective repositories
-        Student student = studentRepo.findById(studentId)
+        Users student = studentRepo.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found with ID: " + studentId));
         Course course = courseRepo.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseId));

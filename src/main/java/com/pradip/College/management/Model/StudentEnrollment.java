@@ -20,7 +20,7 @@ public class StudentEnrollment {
 
     @ManyToOne(cascade = CascadeType.ALL) // Establishing a many-to-one relationship with cascade
     @JoinColumn(name = "student_id", referencedColumnName = "id", nullable = false) // Foreign key reference to Student
-    private Student student;
+    private Users student;
 
 
 
@@ -41,11 +41,11 @@ public class StudentEnrollment {
         this.id = id;
     }
 
-    public Student getStudent() {
+    public Users getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(Users student) {
         this.student = student;
     }
 
