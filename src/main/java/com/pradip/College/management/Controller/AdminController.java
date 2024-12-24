@@ -1,6 +1,8 @@
 package com.pradip.College.management.Controller;
 
 import com.pradip.College.management.Model.Course;
+import com.pradip.College.management.Model.StudentEnrollment;
+import com.pradip.College.management.Model.TeacherEnrollment;
 import com.pradip.College.management.Model.Users;
 import com.pradip.College.management.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,33 +17,20 @@ public class AdminController{
     private AdminService adminService;
 
 
-    // Related to student
+    // Related to users
 
-    @PostMapping("/addStudent")
-    public ResponseEntity<Users> addStudent(@RequestBody Users student) {
-        return new ResponseEntity<>(adminService.saveStudent(student), HttpStatus.CREATED);
+    @PostMapping("/addUser")
+    public ResponseEntity<Users> addUser(@RequestBody Users student) {
+        return new ResponseEntity<>(adminService.saveUsers(student), HttpStatus.CREATED);
     }
-    @DeleteMapping("/deleteStudent/{studentId}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Long studentId){
-        adminService.deleteStudent(studentId);
-        return ResponseEntity.ok("Student with id:"+studentId+" Deleted Successfully");
-    }
-
-
-    //Related to teacher
-    @PostMapping("/addTeacher")
-    public ResponseEntity<Users> addTeacher(@RequestBody Users teacher) {
-        return new ResponseEntity<>(adminService.saveStudent(teacher), HttpStatus.CREATED);
+    @DeleteMapping("/deleteUser/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId){
+        adminService.deleteStudent(userId);
+        return ResponseEntity.ok("Student with id:"+userId +" Deleted Successfully");
     }
 
-    @DeleteMapping("/deleteTeacher/{teacherId}")
-    public ResponseEntity<String> deleteTeacher(@PathVariable Long teacherId){
-        adminService.deleteStudent(teacherId);
-        return ResponseEntity.ok("Teacher with id:" +teacherId+ " Deleted Successfully");
-    }
 
     //Related to course
-
 
     @PostMapping("/addCourse")
     public ResponseEntity<Course> addCourse(@RequestBody Course course) {
@@ -51,6 +40,26 @@ public class AdminController{
     public ResponseEntity<String> deleteCourse(@PathVariable Long courseId){
         adminService.deleteStudent(courseId);
         return ResponseEntity.ok("Course with id:" +courseId+ " Deleted Successfully");
+    }
+
+    //Related to Student Enrollment
+    @PostMapping("/addStudentEnrollment/{studentId}/{courseId}")
+    public ResponseEntity<StudentEnrollment> addStudentEnrollment(@PathVariable Long studentId, @PathVariable Long courseId) {
+        return new ResponseEntity<>(adminService.saveStudentEnrollment(studentId,courseId), HttpStatus.CREATED);
+    }
+
+
+
+
+    //Related to Teacher Enrollment
+    @PostMapping("/addTeacherEnrollment/{teacherId}/{courseId}")
+    public ResponseEntity<TeacherEnrollment> addTeacherEnrollment(@PathVariable Long teacherId, @PathVariable Long courseId) {
+        return new ResponseEntity<>(adminService.saveTeacherEnrollment(teacherId,courseId), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<String> deleteTeacherEnrollment(@PathVariable Long teacherId, @PathVariable Long courseId){
+        adminService.deleteTeacherEnrollment(teacherId,courseId);
+        return ResponseEntity.ok("Teacher with id:" +teacherId+ " Deleted Successfully");
     }
 
 
