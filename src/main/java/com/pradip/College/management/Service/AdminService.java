@@ -71,11 +71,11 @@ public class AdminService {
     public void deleteCourse(Long id){
         usersRepo.deleteById(id);
     }
-    public void deleteStudentEnrollment(Long id){
-        usersRepo.deleteById(id);
+    public void deleteStudentEnrollment(Long sid,Long cid){
+        studentEnrollmentRepo.deleteByStudentIdAndCourseId(sid,cid);
     }
     public void deleteTeacherEnrollment(Long tid, Long cid){
-        usersRepo.deleteById(id);
+        teacherEnrollmentRepo.deleteByTeacherIdAndCourseId(tid,cid);
     }
 
 

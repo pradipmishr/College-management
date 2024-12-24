@@ -1,11 +1,9 @@
 package com.pradip.College.management.Service;
 
 import com.pradip.College.management.Model.Course;
-import com.pradip.College.management.Model.StudentEnrollment;
 import com.pradip.College.management.Model.TeacherEnrollment;
 import com.pradip.College.management.Model.Users;
 import com.pradip.College.management.Repository.CourseRepo;
-import com.pradip.College.management.Repository.StudentEnrollmentRepo;
 import com.pradip.College.management.Repository.TeacherEnrollmentRepo;
 import com.pradip.College.management.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;

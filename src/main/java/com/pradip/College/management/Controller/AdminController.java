@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin")
 public class AdminController{
-    @Autowired
+
     private AdminService adminService;
+    @Autowired
+    public AdminController(AdminService adminService){
+        this.adminService = adminService;
+    }
 
 
     // Related to users
@@ -48,6 +52,12 @@ public class AdminController{
         return new ResponseEntity<>(adminService.saveStudentEnrollment(studentId,courseId), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/deleteStudentEnrollment/{studentId}/{courseId}")
+    public ResponseEntity<String> deleteStudentEnrollment(@PathVariable Long studentId, @PathVariable Long courseId){
+        adminService.deleteTeacherEnrollment(studentId,courseId);
+        return ResponseEntity.ok("Teacher with id:" +studentId+ " and course with id:"+courseId+ " Unenrolled Successfully");
+    }
+
 
 
 
@@ -57,9 +67,10 @@ public class AdminController{
         return new ResponseEntity<>(adminService.saveTeacherEnrollment(teacherId,courseId), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/deleteTeacherEnrollment/{teacherId}/{courseId}")
     public ResponseEntity<String> deleteTeacherEnrollment(@PathVariable Long teacherId, @PathVariable Long courseId){
         adminService.deleteTeacherEnrollment(teacherId,courseId);
-        return ResponseEntity.ok("Teacher with id:" +teacherId+ " Deleted Successfully");
+        return ResponseEntity.ok("Teacher with id:" +teacherId+ " and course with id:"+courseId+ " Unenrolled Successfully");
     }
 
 
