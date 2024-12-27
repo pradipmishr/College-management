@@ -1,5 +1,6 @@
 package com.pradip.College.management.Repository;
 
+import com.pradip.College.management.Model.Course;
 import com.pradip.College.management.Model.StudentEnrollment;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,6 @@ public interface StudentEnrollmentRepo extends JpaRepository<StudentEnrollment,L
     List<StudentEnrollment> findByStudentId(@Param("studentId") Long studentId);
     @Transactional
     void deleteByStudentIdAndCourseId(Long sid, Long cid);
+
+    List<Course> findCoursesByStudentId(Long studentId);
 }
