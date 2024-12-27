@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,13 +20,13 @@ public class StudentEnrollment {
     private Long id;
 
 
-    @ManyToOne(cascade = CascadeType.ALL) // Establishing a many-to-one relationship with cascade
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "student_id", referencedColumnName = "id", nullable = false) // Foreign key reference to Student
     private Users student;
 
 
 
-    @ManyToOne(cascade = CascadeType.ALL) // Assuming a course can also be enrolled in multiple times
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false) // Foreign key reference to Course
     private Course course;
 

@@ -42,7 +42,7 @@ public class AdminController{
     }
     @DeleteMapping("/deleteCourse/{courseId}")
     public ResponseEntity<String> deleteCourse(@PathVariable Long courseId){
-        adminService.deleteStudent(courseId);
+        adminService.deleteCourse(courseId);
         return ResponseEntity.ok("Course with id:" +courseId+ " Deleted Successfully");
     }
 
@@ -54,8 +54,8 @@ public class AdminController{
 
     @DeleteMapping("/deleteStudentEnrollment/{studentId}/{courseId}")
     public ResponseEntity<String> deleteStudentEnrollment(@PathVariable Long studentId, @PathVariable Long courseId){
-        adminService.deleteTeacherEnrollment(studentId,courseId);
-        return ResponseEntity.ok("Teacher with id:" +studentId+ " and course with id:"+courseId+ " Unenrolled Successfully");
+        adminService.deleteStudentEnrollment(studentId,courseId);
+        return ResponseEntity.ok("Student with id:" +studentId+ " and course with id:"+courseId+ " Unenrolled Successfully");
     }
 
 

@@ -9,6 +9,8 @@ import com.pradip.College.management.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StuEnrollService {
 
@@ -39,4 +41,9 @@ public class StuEnrollService {
 
         return studentEnrollmentRepo.save(studentEnrollment);
     }
+
+    public List<StudentEnrollment> getStudentEnrollments(Long studentId) {
+        return studentEnrollmentRepo.findByStudentId(studentId);
+    }
+
 }

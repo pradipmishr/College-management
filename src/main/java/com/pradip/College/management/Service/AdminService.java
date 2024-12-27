@@ -69,8 +69,7 @@ public class AdminService {
     public void deleteStudent(Long id){
         usersRepo.deleteById(id);
     }
-    public void deleteCourse(Long id){
-        usersRepo.deleteById(id);
+    public void deleteCourse(Long id){courseRepo.deleteById(id);
     }
     public void deleteStudentEnrollment(Long sid,Long cid){
         studentEnrollmentRepo.deleteByStudentIdAndCourseId(sid,cid);

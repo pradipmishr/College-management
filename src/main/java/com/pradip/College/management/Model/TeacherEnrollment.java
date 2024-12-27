@@ -1,6 +1,8 @@
 package com.pradip.College.management.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -9,11 +11,11 @@ public class TeacherEnrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL) // Establishing a many-to-one relationship with cascade
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "teacher_id", referencedColumnName = "id", nullable = false) // Foreign key reference to Student
     private Users teacher;
 
-    @ManyToOne(cascade = CascadeType.ALL) // Assuming a course can also be enrolled in multiple times
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false) // Foreign key reference to Course
     private Course course;
 
