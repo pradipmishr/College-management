@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface AssignmentRepo extends JpaRepository<Assignment, Long> {
     List<Assignment> findByCourseIn(List<Course> courses);
+
+    List<Assignment> findByCourse(Course course);
 }

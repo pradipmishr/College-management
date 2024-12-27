@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubmissionService {
@@ -20,6 +22,7 @@ public class SubmissionService {
     AssignmentRepo assignmentRepo;
     @Autowired
     UsersRepo userRepo;
+    //For students
     public Submission submitAssignment(Long assignmentId, Long studentId, Submission submissionDetails) {
         Assignment assignment = assignmentRepo.findById(assignmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Assignment not found"));
@@ -31,4 +34,25 @@ public class SubmissionService {
         return submissionRepo.save(submissionDetails);
     }
 
+    //For teachers
+
+    // Get submissions for a specific assignment
+    public List<Submission> getSubmissionsByAssignment(Long assignmentId) {
+        return submissionRepo.findByAssignmentId(assignmentId);
+    }
+
+    // Grade a submission
+    public Submission gradeSubmission(Long submissionId, int grade) {
+        Optional<Submission> submissionOptional = submissionRepo.findById(submissionId);
+        if (submissionOptional.isEmpty()) {
+            throw new IllegalArgumentException("Submission not found with ID: " + submissionId);
+        }
+        Submission submission = submissionOptional.get();
+        submission.setGrade(grade);
+        return submissionRepo.save(submission);
+    }
+
+    public List<Submission> getSubmissionsForStudent(Long studentId) {
+        return submissionRepo.findByStudentId(studentId);
+    }
 }
