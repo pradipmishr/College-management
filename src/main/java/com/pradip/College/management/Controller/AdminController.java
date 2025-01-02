@@ -72,7 +72,4 @@ public class AdminController{
         adminService.deleteTeacherEnrollment(teacherId,courseId);
         return ResponseEntity.ok("Teacher with id:" +teacherId+ " and course with id:"+courseId+ " Unenrolled Successfully");
     }
-
-
-
 }

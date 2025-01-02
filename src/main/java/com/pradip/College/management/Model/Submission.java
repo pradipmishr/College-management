@@ -28,6 +28,10 @@ public class Submission {
     private LocalDateTime submissionDate = LocalDateTime.now();
 
     @Column
+    private String submissionFile;
+
+
+    @Column
     private Integer grade;
 
     @Column(length = 500)
@@ -80,4 +84,12 @@ public class Submission {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+    public String getSubmissionFile() {
+        return submissionFile;
+    }
+
+    public void setSubmissionFile(String submissionFile) {
+        this.submissionFile = submissionFile;
+    }
+
 }
