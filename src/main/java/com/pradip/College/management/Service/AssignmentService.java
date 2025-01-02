@@ -8,6 +8,8 @@ import com.pradip.College.management.Repository.CourseRepo;
 import com.pradip.College.management.Repository.StudentEnrollmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,12 +29,12 @@ public class AssignmentService {
         return assignmentRepo.save(assignmentDetails);
     }
 
-
-    //For students
+    // For students
     public List<Assignment> getAssignmentsForStudent(Long studentId) {
         List<Course> enrolledCourses = enrollmentRepo.findCoursesByStudentId(studentId);
         return assignmentRepo.findByCourseIn(enrolledCourses);
     }
+
 
     public List<Assignment> getAssignmentsByCourse(Long courseId) {
         Course course = courseRepo.findById(courseId)
