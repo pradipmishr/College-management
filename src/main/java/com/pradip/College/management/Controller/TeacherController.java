@@ -33,18 +33,18 @@ public class TeacherController {
     }
 
     // Teacher views all submissions for a specific assignment
-//    @GetMapping("/submissions/{assignmentId}")
-//    public ResponseEntity<List<Submission>> getSubmissionsByAssignment(@PathVariable Long assignmentId) {
-//        List<Submission> submissions = submissionService.getSubmissionsByAssignment(assignmentId);
-//        return ResponseEntity.ok(submissions);
-//    }
-//
-//    // Teacher grades a submission
-//    @PutMapping("/submission/grade/{submissionId}")
-//    public ResponseEntity<Submission> gradeSubmission(
-//            @PathVariable Long submissionId,
-//            @RequestParam int grade) {
-//        Submission gradedSubmission = submissionService.gradeSubmission(submissionId, grade);
-//        return ResponseEntity.ok(gradedSubmission);
-//    }
+    @GetMapping("/submissions/{assignmentId}")
+    public ResponseEntity<List<Submission>> getSubmissionsByAssignment(@PathVariable Long assignmentId) {
+        List<Submission> submissions = submissionService.getSubmissionsByAssignment(assignmentId);
+        return ResponseEntity.ok(submissions);
+    }
+
+   // Teacher grades a submission
+    @PutMapping("/submission/grade/{submissionId}")
+    public ResponseEntity<Submission> gradeSubmission(
+            @PathVariable Long submissionId,
+            @RequestParam int grade) {
+        Submission gradedSubmission = submissionService.gradeSubmission(submissionId, grade);
+        return ResponseEntity.ok(gradedSubmission);
+    }
 }

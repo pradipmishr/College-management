@@ -33,6 +33,9 @@ public class SubmissionService {
         submissionDetails.setSubmissionDate(LocalDateTime.now());
         return submissionRepo.save(submissionDetails);
     }
+    public List<Submission> getSubmissionsForStudent(Long studentId) {
+        return submissionRepo.findByStudentId(studentId);
+    }
 
     //For teachers
 
@@ -52,7 +55,5 @@ public class SubmissionService {
         return submissionRepo.save(submission);
     }
 
-    public List<Submission> getSubmissionsForStudent(Long studentId) {
-        return submissionRepo.findByStudentId(studentId);
-    }
+
 }
