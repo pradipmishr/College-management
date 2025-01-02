@@ -4,12 +4,10 @@ import com.pradip.College.management.Model.Assignment;
 import com.pradip.College.management.Model.Submission;
 import com.pradip.College.management.Service.AssignmentService;
 import com.pradip.College.management.Service.SubmissionService;
-import org.aspectj.util.GenericSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -44,9 +42,6 @@ public class StudentController {
         List<Submission> submissions = submissionService.getSubmissionsForStudent(studentId);
         return ResponseEntity.ok(submissions);
     }
-
-
-
 
 
 }
