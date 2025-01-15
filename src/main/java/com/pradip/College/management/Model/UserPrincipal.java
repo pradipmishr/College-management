@@ -4,25 +4,51 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.pradip.College.management.Model.Users.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
     private Users user;
+    private String username;
+    private String password;
+    private Set<Role> roles;
+
     public UserPrincipal(Users user) {
-        this.user = user;
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.roles = user.getRoles(); // Get roles from the User entity
     }
+
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//
+//        Arrays.stream(Role.values())
+//                .forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
+//
+//        return authorities;
+//    }
+//@Override
+//public Collection<? extends GrantedAuthority> getAuthorities() {
+//    List<GrantedAuthority> authorities = new ArrayList<>();
+//
+//    for (Role role : user.getRole()) {
+//        authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())); // Dynamically add prefix
+//    }
+//
+//    return authorities;
+//}
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-        Arrays.stream(Role.values())
-                .forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
-
-        return authorities;
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + roles.name())) // Add the "ROLE_" prefix dynamically
+                .collect(Collectors.toList());
     }
+
+
 
     @Override
     public String getPassword() {

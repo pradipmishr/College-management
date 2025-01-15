@@ -7,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Entity
@@ -77,7 +76,10 @@ public class Users {
         ADMIN,
         TEACHER,
         STUDENT;
-
     }
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
+
 }
 
