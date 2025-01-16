@@ -17,38 +17,17 @@ public class UserPrincipal implements UserDetails {
     public UserPrincipal(Users user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.roles = user.getRoles(); // Get roles from the User entity
+        this.roles = Collections.singleton(user.getRole()); // Get roles from the User entity
     }
 
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//
-//        Arrays.stream(Role.values())
-//                .forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
-//
-//        return authorities;
-//    }
-//@Override
-//public Collection<? extends GrantedAuthority> getAuthorities() {
-//    List<GrantedAuthority> authorities = new ArrayList<>();
-//
-//    for (Role role : user.getRole()) {
-//        authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())); // Dynamically add prefix
-//    }
-//
-//    return authorities;
-//}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Convert roles to a collection of GrantedAuthority
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + roles.name())) // Add the "ROLE_" prefix dynamically
-                .collect(Collectors.toList());
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .collect(Collectors.toSet());
     }
-
-
 
     @Override
     public String getPassword() {

@@ -1,14 +1,10 @@
 package com.pradip.College.management.Model;
 
-
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.*;
-
 
 @Entity
 @AllArgsConstructor
@@ -26,6 +22,11 @@ public class Users {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>(); // Multiple roles
+
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherEnrollment> teacherEnrollments;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -72,14 +73,23 @@ public class Users {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
+
     enum Role{
         ADMIN,
         TEACHER,
         STUDENT;
     }
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+
 
 }
 
