@@ -15,9 +15,7 @@ public class UserPrincipal implements UserDetails {
     private Set<Role> roles;
 
     public UserPrincipal(Users user) {
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.roles = Collections.singleton(user.getRole()); // Get roles from the User entity
+        this.user=user;
     }
 
 

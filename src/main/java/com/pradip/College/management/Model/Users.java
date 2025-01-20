@@ -22,11 +22,6 @@ public class Users {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>(); // Multiple roles
-
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherEnrollment> teacherEnrollments;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -71,6 +66,22 @@ public class Users {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<TeacherEnrollment> getTeacherEnrollments() {
+        return teacherEnrollments;
+    }
+
+    public void setTeacherEnrollments(List<TeacherEnrollment> teacherEnrollments) {
+        this.teacherEnrollments = teacherEnrollments;
+    }
+
+    public List<StudentEnrollment> getStudentEnrollments() {
+        return studentEnrollments;
+    }
+
+    public void setStudentEnrollments(List<StudentEnrollment> studentEnrollments) {
+        this.studentEnrollments = studentEnrollments;
     }
 
     @Override
