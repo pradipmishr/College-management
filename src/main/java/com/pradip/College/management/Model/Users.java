@@ -68,21 +68,6 @@ public class Users {
         this.role = role;
     }
 
-    public List<TeacherEnrollment> getTeacherEnrollments() {
-        return teacherEnrollments;
-    }
-
-    public void setTeacherEnrollments(List<TeacherEnrollment> teacherEnrollments) {
-        this.teacherEnrollments = teacherEnrollments;
-    }
-
-    public List<StudentEnrollment> getStudentEnrollments() {
-        return studentEnrollments;
-    }
-
-    public void setStudentEnrollments(List<StudentEnrollment> studentEnrollments) {
-        this.studentEnrollments = studentEnrollments;
-    }
 
     @Override
     public String toString() {

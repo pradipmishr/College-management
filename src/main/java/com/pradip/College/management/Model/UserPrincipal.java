@@ -4,56 +4,55 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.pradip.College.management.Model.Users.*;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
-    private Users user;
     private String username;
     private String password;
-    private Set<Role> roles;
+    private Role role; // Single role from Users
 
     public UserPrincipal(Users user) {
-        this.user=user;
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.role = user.getRole();
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Convert roles to a collection of GrantedAuthority
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                .collect(Collectors.toSet());
+        if (role != null) {
+            return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role.name()));
+        }
+        return Collections.emptySet();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return this.username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Assuming account never expires
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Assuming account never gets locked
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Assuming credentials never expire
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Assuming account is always enabled
+        return true;
     }
 }
+

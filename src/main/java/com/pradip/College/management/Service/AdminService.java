@@ -9,6 +9,7 @@ import com.pradip.College.management.Repository.StudentEnrollmentRepo;
 import com.pradip.College.management.Repository.TeacherEnrollmentRepo;
 import com.pradip.College.management.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -22,10 +23,14 @@ public class AdminService {
     private StudentEnrollmentRepo studentEnrollmentRepo;
     @Autowired
     private TeacherEnrollmentRepo teacherEnrollmentRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     //Save methods
     public Users saveUsers(Users users){
+        String encodedPassword = passwordEncoder.encode(users.getPassword());
+        users.setPassword(encodedPassword);  // Set encoded password
         return usersRepo.save(users);
     }
     public Course saveCourse(Course course) {
