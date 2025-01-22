@@ -33,7 +33,7 @@ public class StudentController {
             @PathVariable Long studentId,
             @PathVariable Long assignmentId,
             @RequestBody Submission submission) {
-        return new ResponseEntity<Submission>(submissionService.submitAssignment(studentId, assignmentId, submission), HttpStatus.CREATED);
+        return new ResponseEntity<Submission>(submissionService.submitAssignment(assignmentId, studentId,submission), HttpStatus.CREATED);
     }
 
     // Student views their submissions

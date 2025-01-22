@@ -43,8 +43,9 @@ public class TeacherController {
     @PutMapping("/submission/grade/{submissionId}")
     public ResponseEntity<Submission> gradeSubmission(
             @PathVariable Long submissionId,
-            @RequestParam int grade) {
-        Submission gradedSubmission = submissionService.gradeSubmission(submissionId, grade);
+            @RequestParam int grade,
+            @RequestBody String feedback) {
+        Submission gradedSubmission = submissionService.gradeSubmission(submissionId, grade, feedback);
         return ResponseEntity.ok(gradedSubmission);
     }
 }

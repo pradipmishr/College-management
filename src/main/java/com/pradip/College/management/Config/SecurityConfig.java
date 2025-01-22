@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/teacher/**").hasRole("TEACHER")
                         .requestMatchers("/student/**").hasRole("STUDENT")
+                        .requestMatchers("/greet").authenticated() // Protect the greet endpoint
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

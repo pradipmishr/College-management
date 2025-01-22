@@ -30,7 +30,7 @@ public class AdminController{
     @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){
         adminService.deleteStudent(userId);
-        return ResponseEntity.ok("Student with id:"+userId +" Deleted Successfully");
+        return ResponseEntity.ok("User with id:"+userId +" Deleted Successfully");
     }
 
 

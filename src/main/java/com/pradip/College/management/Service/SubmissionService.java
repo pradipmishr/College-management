@@ -45,13 +45,14 @@ public class SubmissionService {
     }
 
     // Grade a submission
-    public Submission gradeSubmission(Long submissionId, int grade) {
+    public Submission gradeSubmission(Long submissionId, int grade, String feedback) {
         Optional<Submission> submissionOptional = submissionRepo.findById(submissionId);
         if (submissionOptional.isEmpty()) {
             throw new IllegalArgumentException("Submission not found with ID: " + submissionId);
         }
         Submission submission = submissionOptional.get();
         submission.setGrade(grade);
+        submission.setFeedback(feedback);
         return submissionRepo.save(submission);
     }
 
